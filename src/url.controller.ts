@@ -56,9 +56,9 @@ export class UrlController {
   }
 
   @Get(':id')
-  async redirect(@Param('id') id: any, @Res() res) {
+  async redirect(@Param('id') id: string, @Res() res) {
     try {
-      const url = await this.urlRepository.findOne(id);
+      const url = await this.urlRepository.findOneBy({ id: id });
       if (url) {
         res.redirect(url.longUrl);
       } else {
